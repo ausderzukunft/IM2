@@ -1,26 +1,154 @@
 <!doctype html>
-<html lang="de">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cocktail API</title>
+
+    <title>Tarotting</title>
+
+    <!-- CSS -->
     <link rel="stylesheet" href="css/style.css" />
   </head>
+
   <body>
-    <header>
-      <h1>
-        Vorlage
-        <h1>test 2</h1>
-        für interaktive Medien II Änderung
-      </h1>
-    </header>
     <main>
-      <h2>Main Content</h2>
-      <p>This is the main content of the page.</p>
+      <!-- HOME -->
+      <section id="home" class="screen">
+        <div class="stars" aria-hidden="true">
+          <span class="diamond big" style="left: 9%; top: 27%"></span>
+          <span class="diamond" style="left: 11%; bottom: 13%"></span>
+          <span class="sparkle" style="right: 16%; top: 57%"></span>
+          <span class="sparkle small" style="left: 23%; top: 4%"></span>
+        </div>
+
+        <div class="home-content">
+          <h1>Tarotting</h1>
+
+          <div class="intro">
+            <p>
+              You come to our website because you have a big life question and
+              the TikTok witches weren’t able to help you.
+            </p>
+
+            <p>
+              That’s where the universe comes in.<br />
+              And this website, especially.
+            </p>
+          </div>
+
+          <button class="diamond-button" id="startButton">
+            <span>Start<br />Rotting</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- MAJOR / MINOR -->
+      <section id="deck" class="screen hidden">
+        <a class="logo-mark home-link" href="#home" aria-label="Home"></a>
+
+        <div class="cards-choice">
+          <button class="choice-card" data-deck="big">
+            <span class="choice-label">Big Life Questions</span>
+          </button>
+
+          <button class="choice-card" data-deck="small">
+            <span class="choice-label">Small Life Questions</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- RANDOM MAJOR -->
+      <section id="random-major" class="screen hidden">
+        <a class="logo-mark home-link" href="#home" aria-label="Home"></a>
+
+        <button class="white-diamond" id="randomMajorBtn">
+          <span>Get Random Card</span>
+        </button>
+
+        <button class="small-back back-to-deck" type="button">
+          <span>Retro</span>
+        </button>
+      </section>
+
+      <!-- SUITS -->
+      <section id="suits" class="screen hidden">
+        <a class="logo-mark home-link" href="#home" aria-label="Home"></a>
+
+        <div class="suit-menu">
+          <p>
+            Pick one.<br />
+            Your subconscious already did.
+          </p>
+
+          <button class="suit-button" data-suit="swords">Swords</button>
+
+          <button class="suit-button" data-suit="wands">Wands</button>
+
+          <button class="suit-button" data-suit="cups">Cups</button>
+
+          <button class="suit-button" data-suit="pentacles">Pentacles</button>
+        </div>
+
+        <button class="small-back back-to-deck" type="button">
+          <span>Retro</span>
+        </button>
+      </section>
+
+      <!-- RANDOM MINOR -->
+      <section id="random-minor" class="screen hidden">
+        <a class="logo-mark home-link" href="#home" aria-label="Home"></a>
+
+        <button class="white-diamond" id="randomMinorBtn">
+          <span>Get Random Card</span>
+        </button>
+
+        <button class="small-back back-to-deck" type="button">
+          <span>Retro</span>
+        </button>
+      </section>
+
+      <!-- LOADING -->
+      <section id="loading" class="screen hidden">
+        <a class="logo-mark home-link" href="#home" aria-label="Home"></a>
+
+        <div class="center-panel">
+          <div class="hourglass"></div>
+
+          <p class="loading-text">The universe is loading...</p>
+        </div>
+      </section>
+
+      <!-- RESULT -->
+      <section id="result" class="screen hidden">
+        <a class="logo-mark home-link" href="#home" aria-label="Home"></a>
+
+        <div class="result-content">
+          <div class="result-card" id="resultCard"></div>
+
+          <div class="result-text">
+            <h2 id="cardTitle">Wheel of Fortune</h2>
+
+            <p id="cardKeywords"></p>
+
+            <p id="cardMeaning"></p>
+
+            <p>
+              <strong> We hope your cookies were accepted. </strong>
+
+              <br />
+
+              Because destiny says: what is meant for you, finds the algorithm.
+            </p>
+          </div>
+        </div>
+
+        <button class="small-back" id="retroFromResult" type="button">
+          <span>Retro</span>
+        </button>
+      </section>
     </main>
-    <footer>
-      <p>This is the footer of the page.</p>
-    </footer>
-    <script src="js/script.js" type="module"></script>
+
+    <!-- JS -->
+    <script src="js/script.js"></script>
   </body>
 </html>

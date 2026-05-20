@@ -37,37 +37,18 @@ body {
   overflow-x: hidden;
 }
 
-@keyframes floatStar {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-14px) rotate(8deg); }
-}
-
-@keyframes pulseGlow {
-  0%, 100% { opacity: 0.78; filter: blur(0); }
-  50% { opacity: 1; filter: blur(10px); }
-}
-
 .screen {
   position: relative;
   min-height: 100svh;
   width: 100%;
   overflow: hidden;
   background:
-    radial-gradient(circle at 52% 52%, rgba(255,0,191,.9) 0%, rgba(153,0,255,.75) 24%, #7a00ff 60%),
+    radial-gradient(circle at 52% 52%, rgba(255, 0, 191, 0.9) 0%, rgba(153, 0, 255, 0.75) 24%, #7a00ff 60%),
     linear-gradient(140deg, #7600ff, #9700ff);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: clamp(24px, 5vw, 72px);
-}
-
-.screen::before {
-  content: "";
-  position: absolute;
-  inset: -10%;
-  background: radial-gradient(circle at center, rgba(255,0,180,.55), transparent 42%);
-  animation: pulseGlow 6s ease-in-out infinite;
-  z-index: 0;
 }
 
 .hidden {
@@ -90,36 +71,6 @@ body {
   inset: 0;
   background: #fff;
   clip-path: polygon(50% 0, 80% 16%, 80% 100%, 55% 82%, 55% 36%, 50% 26%, 45% 36%, 45% 82%, 20% 100%, 20% 16%);
-}
-
-.stars span {
-  position: absolute;
-  display: block;
-  background: var(--soft);
-  z-index: 1;
-  animation: floatStar 5s ease-in-out infinite;
-}
-
-.diamond {
-  width: 44px;
-  height: 44px;
-  transform: rotate(45deg);
-}
-
-.diamond.big {
-  width: 78px;
-  height: 78px;
-}
-
-.sparkle {
-  width: 42px;
-  height: 42px;
-  clip-path: polygon(50% 0, 63% 35%, 100% 50%, 63% 65%, 50% 100%, 37% 65%, 0 50%, 37% 35%);
-}
-
-.sparkle.small {
-  width: 28px;
-  height: 28px;
 }
 
 .home-content {
@@ -170,9 +121,8 @@ h1 {
   color: white;
   display: grid;
   place-items: center;
-  text-decoration: none;
   cursor: pointer;
-  transition: .18s ease;
+  transition: 0.18s ease;
 }
 
 .diamond-button:hover {
@@ -185,8 +135,10 @@ h1 {
   transform: rotate(-45deg);
   text-transform: uppercase;
   font-size: clamp(17px, 1.6vw, 24px);
-  line-height: .9;
+  line-height: 0.9;
 }
+
+/* CHOICE CARDS */
 
 .cards-choice {
   position: relative;
@@ -202,11 +154,7 @@ h1 {
   border: none;
   background: transparent;
   cursor: pointer;
-  transition: .2s ease;
-}
-
-.choice-card:hover {
-  transform: translateY(-10px) scale(1.02);
+  transition: 0.2s ease;
 }
 
 .choice-card::before {
@@ -216,14 +164,19 @@ h1 {
   background-image: var(--card-image);
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
+}
+
+.choice-card:hover {
+  transform: translateY(-10px) scale(1.02);
 }
 
 .choice-card[data-deck="big"] {
-  --card-image: url("major life questions.png");
+  --card-image: url("../img/major life questions.png");
 }
 
 .choice-card[data-deck="small"] {
-  --card-image: url("minor life questions.png");
+  --card-image: url("../img/minor life questions.png");
 }
 
 .choice-label {
@@ -237,6 +190,8 @@ h1 {
   color: white;
 }
 
+/* WHITE DIAMOND */
+
 .white-diamond {
   position: relative;
   z-index: 2;
@@ -249,7 +204,7 @@ h1 {
   display: grid;
   place-items: center;
   cursor: pointer;
-  transition: .18s ease;
+  transition: 0.18s ease;
 }
 
 .white-diamond:hover {
@@ -262,8 +217,10 @@ h1 {
   transform: rotate(-45deg);
   text-transform: uppercase;
   font-size: clamp(18px, 1.7vw, 28px);
-  line-height: .9;
+  line-height: 0.9;
 }
+
+/* SUITS */
 
 .suit-menu {
   position: relative;
@@ -288,7 +245,7 @@ h1 {
   text-transform: uppercase;
   cursor: pointer;
   clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
-  transition: .16s ease;
+  transition: 0.16s ease;
 }
 
 .suit-button:hover {
@@ -297,44 +254,102 @@ h1 {
   transform: scale(1.08);
 }
 
+/* LOADING */
+
 .hourglass {
-  width: 92px;
-  height: 130px;
   position: relative;
+
+  width: 120px;
+  height: 160px;
 }
 
-.hourglass::before,
-.hourglass::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  border-left: 46px solid transparent;
-  border-right: 46px solid transparent;
-}
+/* TOP */
 
 .hourglass::before {
+  content: "";
+
+  position: absolute;
   top: 0;
-  border-top: 65px solid white;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  width: 0;
+  height: 0;
+
+  border-left: 60px solid transparent;
+  border-right: 60px solid transparent;
+  border-bottom: 80px solid white;
 }
+
+/* BOTTOM */
 
 .hourglass::after {
+  content: "";
+
+  position: absolute;
   bottom: 0;
-  border-bottom: 65px solid white;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  width: 0;
+  height: 0;
+
+  border-left: 60px solid transparent;
+  border-right: 60px solid transparent;
+  border-top: 80px solid white;
 }
 
-.center-panel {
-  position: relative;
-  z-index: 2;
-  display: grid;
-  place-items: center;
-  gap: 32px;
-  text-align: center;
+/* SAND */
+
+.sand {
+  position: absolute;
+
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  width: 0;
+  height: 0;
+
+  border-left: 26px solid transparent;
+  border-right: 26px solid transparent;
+
+  animation: sandMove 1.6s infinite;
 }
 
-.loading-text {
-  font-family: "Helvetica73", Helvetica, Arial, sans-serif;
+@keyframes sandMove {
+  0% {
+    top: 92px;
+
+    border-bottom: 42px solid #ff00bf;
+    border-top: 0 solid transparent;
+  }
+
+  49% {
+    top: 92px;
+
+    border-bottom: 42px solid #ff00bf;
+    border-top: 0 solid transparent;
+  }
+
+  50% {
+    top: 24px;
+
+    border-top: 42px solid #ff00bf;
+    border-bottom: 0 solid transparent;
+  }
+
+  100% {
+    top: 24px;
+
+    border-top: 42px solid #ff00bf;
+    border-bottom: 0 solid transparent;
+  }
 }
+
+/* RESULT */
 
 .result-content {
   position: relative;
@@ -358,7 +373,7 @@ h1 {
 .result-text h2 {
   font-size: clamp(28px, 3vw, 50px);
   text-transform: uppercase;
-  line-height: .9;
+  line-height: 0.9;
   margin-bottom: 18px;
 }
 
@@ -374,6 +389,8 @@ strong {
   font-weight: normal;
 }
 
+/* REROT BUTTON */
+
 .small-back {
   position: absolute;
   bottom: 34px;
@@ -387,7 +404,7 @@ strong {
   place-items: center;
   transform: translateX(-50%) rotate(45deg);
   cursor: pointer;
-  transition: .18s ease;
+  transition: 0.18s ease;
 }
 
 .small-back:hover {
@@ -400,6 +417,8 @@ strong {
   transform: rotate(-45deg);
   text-transform: uppercase;
 }
+
+/* MOBILE */
 
 @media (max-width: 760px) {
   h1 {

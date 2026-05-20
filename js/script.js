@@ -9,44 +9,41 @@ const randomMinorBtn = document.querySelector("#randomMinorBtn");
 const retroFromResult = document.querySelector("#retroFromResult");
 const backToDeckButtons = document.querySelectorAll(".back-to-deck");
 
+const cardTitle = document.querySelector("#cardTitle");
+const cardKeywords = document.querySelector("#cardKeywords");
+const cardMeaning = document.querySelector("#cardMeaning");
+const standardText = document.querySelector("#standardText");
+const resultCard = document.querySelector("#resultCard");
+
+let allCards = [];
+let majorCards = [];
+let minorCards = [];
+
 let selectedSuit = null;
-let lastPath = "major";
 
-const cards = {
-  swords: {
-    title: "Four of Swords",
-    keywords:
-      "Vigilance, retreat, solitude, hermit’s repose, exile, tomb and coffin.",
-    meaning: "After every action, consequences. Whatever.",
-    image: "../img/Swords.png"
-  },
+const API_URL = "https://tarotapi.dev/api/v1/cards";
 
-  wands: {
-    title: "Six of Wands",
-    keywords:
-      "Victory, triumph, good news and public recognition.",
-    meaning:
-      "A spontaneous flex, or a victorious attempt at looking opened to the enemy.",
-    image: "../img/Wands.png"
-  },
+const defaultMajorImage = "../img/major life questions.png";
 
-  cups: {
-    title: "Five of Cups",
-    keywords:
-      "Loss, expectation, memory, regret and emotional leftovers.",
-    meaning:
-      "The loss is different and greatly important. Whatever.",
-    image: "../img/Cups.png"
-  },
+const suitImages = {
+  swords: "../img/Swords.png",
+  wands: "../img/Wands.png",
+  cups: "../img/Cups.png",
+  pentacles: "../img/Pentacles.png"
+};
 
-  pentacles: {
-    title: "Eight of Pentacles",
-    keywords:
-      "Work, employment, commission, craftsmanship and skill.",
-    meaning:
-      "The possession of all, turned to cunning and intrigue.",
-    image: "../img/Pentacles.png"
-  }
+const suitTexts = {
+  swords:
+    "Swords don’t care about your feelings. They care about the truth. Unfortunately, those are rarely the same thing, whether you wanted to know or not.",
+
+  wands:
+    "Wands don’t wait for the perfect moment. They create problems first and clarity later. The universe is trying to tell you something. Ignoring it would be genuinely stupid.",
+
+  cups:
+    "This card speaks through emotion and intuition. Terrible news for people who prefer avoidance. Whatever you felt just now probably matters.",
+
+  pentacles:
+    "Pentacles deal with work, stability, money, and the exhausting reality of being a person with responsibilities. Unfortunately, the universe thinks this matters."
 };
 
 function showScreen(id) {
@@ -55,8 +52,70 @@ function showScreen(id) {
   });
 
   document.querySelector(id).classList.remove("hidden");
-
   window.scrollTo(0, 0);
+}
+
+async function loadTarotCards() {
+  try {
+    const response = await fetch(API_URL);
+    const data = await response.json();
+
+    allCards = data.cards;
+
+    majorCards = allCards.filter((card) => {
+      return card.type === "major";
+    });
+
+    minorCards = allCards.filter((card) => {
+      return card.type === "minor";
+    });
+
+    console.log("API loaded:", allCards);
+  } catch (error) {
+    console.error("API error:", error);
+
+    cardTitle.textContent = "The Universe Glitched";
+    cardKeywords.textContent = "";
+    cardMeaning.textContent =
+      "The cards could not be loaded. Try again, mortal.";
+  }
+}
+
+function getRandomCard(cardsArray) {
+  const randomIndex = Math.floor(Math.random() * cardsArray.length);
+  return cardsArray[randomIndex];
+}
+
+function renderMajorCard(card) {
+  cardTitle.textContent = card.name;
+
+  cardKeywords.textContent = card.meaning_up;
+
+  cardMeaning.textContent = card.meaning_rev;
+
+  standardText.innerHTML =
+  "<strong>We hope your question was answered.<br>Whatever came to your mind first was probably the truth anyway.<br>Thank the universe. Or don’t.</strong>";
+
+  resultCard.style.setProperty(
+    "--result-image",
+    `url("${defaultMajorImage}")`
+  );
+}
+
+function renderMinorCard(card) {
+  cardTitle.textContent = card.name;
+
+  cardKeywords.textContent = card.meaning_up;
+
+  cardMeaning.textContent = card.meaning_rev;
+
+  standardText.innerHTML =
+    `<strong>${suitTexts[selectedSuit]}</strong>`;
+
+  resultCard.style.setProperty(
+    "--result-image",
+    `url("${suitImages[selectedSuit]}")`
+  );
 }
 
 startButton.addEventListener("click", () => {
@@ -68,29 +127,22 @@ deckButtons.forEach((button) => {
     const deck = button.dataset.deck;
 
     if (deck === "big") {
-      lastPath = "major";
-
       showScreen("#random-major");
-    } else {
-      lastPath = "minor";
+    }
 
+    if (deck === "small") {
       showScreen("#suits");
     }
   });
 });
 
 randomMajorBtn.addEventListener("click", () => {
-  lastPath = "major";
-
   showScreen("#loading");
 
   setTimeout(() => {
-    const keys = Object.keys(cards);
+    const randomMajorCard = getRandomCard(majorCards);
 
-    const randomKey =
-      keys[Math.floor(Math.random() * keys.length)];
-
-    renderCard(cards[randomKey]);
+    renderMajorCard(randomMajorCard);
 
     showScreen("#result");
   }, 1100);
@@ -100,8 +152,6 @@ suitButtons.forEach((button) => {
   button.addEventListener("click", () => {
     selectedSuit = button.dataset.suit;
 
-    lastPath = "minor";
-
     showScreen("#random-minor");
   });
 });
@@ -110,7 +160,13 @@ randomMinorBtn.addEventListener("click", () => {
   showScreen("#loading");
 
   setTimeout(() => {
-    renderCard(cards[selectedSuit]);
+    const cardsOfSelectedSuit = minorCards.filter((card) => {
+      return card.suit.toLowerCase() === selectedSuit;
+    });
+
+    const randomMinorCard = getRandomCard(cardsOfSelectedSuit);
+
+    renderMinorCard(randomMinorCard);
 
     showScreen("#result");
   }, 900);
@@ -134,20 +190,4 @@ document.querySelectorAll(".home-link").forEach((link) => {
   });
 });
 
-function renderCard(card) {
-  document.querySelector("#cardTitle").textContent =
-    card.title;
-
-  document.querySelector("#cardKeywords").textContent =
-    card.keywords;
-
-  document.querySelector("#cardMeaning").textContent =
-    card.meaning;
-
-  document
-    .querySelector("#resultCard")
-    .style.setProperty(
-      "--result-image",
-      `url("${card.image}")`
-    );
-}
+loadTarotCards();

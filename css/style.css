@@ -1,16 +1,16 @@
 @font-face {
   font-family: "Bismarck";
-  src: url("./fonts/Bismarck.otf") format("opentype");
+  src: url("../fonts/Bismarck-nRoXR.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "Helvetica53";
-  src: url("./fonts/HelveticaNeueLTStd-Ext.otf") format("opentype");
+  src: url("../fonts/Helvetica Neue LT Std 53 Extended.otf") format("opentype");
 }
 
 @font-face {
   font-family: "Helvetica73";
-  src: url("./fonts/HelveticaNeueLTStd-BdEx.otf") format("opentype");
+  src: url("../fonts/Helvetica Neue LT Std 73 Bold Extended.otf") format("opentype");
 }
 
 :root {
@@ -66,36 +66,27 @@ body {
 .logo-mark {
   position: absolute;
 
-  top: 22px;
+  top: 8px;
   left: 50%;
 
-  width: 22px;
-  height: 46px;
-
   transform: translateX(-50%);
+
   z-index: 10;
+
+  font-family: "Bismarck", serif;
+
+  font-size: 72px;
+  line-height: 1;
+
+  color: white;
+
+  text-decoration: none;
+
+  transition: color 0.2s ease;
 }
 
-.logo-mark::before {
-  content: "";
-
-  position: absolute;
-  inset: 0;
-
-  background: #fff;
-
-  clip-path: polygon(
-    50% 0,
-    80% 16%,
-    80% 100%,
-    55% 82%,
-    55% 36%,
-    50% 26%,
-    45% 36%,
-    45% 82%,
-    20% 100%,
-    20% 16%
-  );
+.logo-mark:hover {
+  color: var(--pink);
 }
 
 .home-content {
@@ -116,17 +107,21 @@ body {
 h1 {
   font-family: "Bismarck", serif;
 
-  font-size: clamp(74px, 15vw, 230px);
-  line-height: 0.8;
+  font-size: clamp(100px, 20vw, 600px);
+  font-weight: normal;
+  font-synthesis: none;
 
-  letter-spacing: -0.04em;
+  line-height: 0.8;
   text-transform: uppercase;
+
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
 }
 
 .intro {
   max-width: 760px;
 
-  font-size: clamp(17px, 2vw, 28px);
+  font-size: clamp(17px, 2vw, 18px);
   line-height: 1.15;
 }
 
@@ -504,14 +499,13 @@ h1 {
 
 strong {
   font-family: "Helvetica73", Helvetica, Arial, sans-serif;
-  font-weight: normal;
 }
 
 /* REROT BUTTON */
 
 .small-back {
   position: absolute;
-  bottom: 34px;
+  bottom: 70px;
   left: 50%;
   width: 86px;
   height: 86px;
@@ -538,6 +532,7 @@ strong {
   transform: rotate(-45deg);
 
   text-transform: uppercase;
+  font-size: 22px;
 }
 
 /* MOBILE */

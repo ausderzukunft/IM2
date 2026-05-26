@@ -43,14 +43,13 @@ body {
   width: 100%;
   overflow: hidden;
 
-  background:
-    radial-gradient(
-      circle at 52% 52%,
-      rgba(255, 0, 191, 0.9) 0%,
-      rgba(153, 0, 255, 0.75) 24%,
-      #7a00ff 60%
-    ),
-    linear-gradient(140deg, #7600ff, #9700ff);
+background:
+radial-gradient(
+  circle at center,
+  rgba(255,0,191,0.7) 0%,
+  rgba(176,0,255,0.9) 40%,
+  #7a00ff 100%
+);
 
   display: flex;
   align-items: center;
@@ -607,9 +606,4 @@ strong {
 #loading-lottie {
   width: 700px;
   height: 700px;
-}
-
-.screen {
-  position: relative;
-  z-index: 2;
 }

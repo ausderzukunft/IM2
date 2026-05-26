@@ -215,6 +215,7 @@ h1 {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  border-radius: 16px;
 }
 
 .choice-card:hover {
@@ -473,7 +474,7 @@ h1 {
   background-image: var(--result-image);
   background-size: cover;
   background-position: center;
-
+  border-radius: 16px;
   justify-self: end;
 }
 

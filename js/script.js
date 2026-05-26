@@ -191,3 +191,22 @@ document.querySelectorAll(".home-link").forEach((link) => {
 });
 
 loadTarotCards();
+
+console.log("lottie:", lottie);
+console.log("container:", document.getElementById("bg-lottie"));
+
+lottie.loadAnimation({
+  container: document.getElementById("bg-lottie"),
+  renderer: "svg",
+  loop: true,
+  autoplay: true,
+  path: "animations/desktop.json"
+});
+
+const loadingAnim = lottie.loadAnimation({
+  container: document.getElementById("loading-lottie"),
+  renderer: "svg",
+  loop: true,
+  autoplay: true,
+  path: "animations/loading.json"
+});

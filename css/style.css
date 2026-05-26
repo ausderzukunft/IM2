@@ -595,7 +595,7 @@ strong {
   inset: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 1;
+  z-index: 3;
   pointer-events: none;
 }
 
@@ -605,13 +605,11 @@ strong {
 }
 
 #loading-lottie {
-  width: 300px;
-  height: 300px;
+  width: 700px;
+  height: 700px;
 }
 
 .screen {
   position: relative;
   z-index: 2;
-
-  background: transparent !important;
 }

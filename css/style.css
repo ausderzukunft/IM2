@@ -121,7 +121,7 @@ h1 {
 .intro {
   max-width: 760px;
 
-  font-size: clamp(17px, 2vw, 18px);
+  font-size: 17px;
   line-height: 1.15;
 }
 

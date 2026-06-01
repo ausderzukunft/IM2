@@ -42,20 +42,26 @@ body {
   min-height: 100svh;
   width: 100%;
   overflow: hidden;
-
-background:
-radial-gradient(
-  circle at center,
-  rgba(255,0,191,0.7) 0%,
-  rgba(176,0,255,0.9) 40%,
-  #7a00ff 100%
-);
-
+  background: linear-gradient(140deg, #7600ff, #9700ff);
   display: flex;
   align-items: center;
   justify-content: center;
-
   padding: clamp(24px, 5vw, 72px);
+}
+
+.screen::before {
+  content: "";
+  position: absolute;
+  width: 620px;
+  height: 620px;
+    min-height: 100vh;
+  left: 50%;
+  top: 55%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  background: rgba(255, 0, 191, 0.73);
+  filter: blur(120px);
+  z-index: 1;
+  pointer-events: none;
 }
 
 .hidden {
@@ -65,7 +71,7 @@ radial-gradient(
 .logo-mark {
   position: absolute;
 
-  top: 8px;
+  top: 50px;
   left: 50%;
 
   transform: translateX(-50%);
@@ -122,6 +128,8 @@ h1 {
 
   font-size: 17px;
   line-height: 1.15;
+  margin: 20px;
+  margin-bottom: 40px;
 }
 
 .intro p + p {
@@ -298,8 +306,9 @@ h1 {
   z-index: 2;
 
   display: grid;
-
   gap: 20px;
+
+  justify-items: center;
 
   text-align: center;
 }
@@ -441,14 +450,14 @@ h1 {
 
   display: grid;
   place-items: center;
-
-  gap: 32px;
-
   text-align: center;
+  margin-top: -70px;
 }
 
 .loading-text {
   font-family: "Helvetica73", Helvetica, Arial, sans-serif;
+  margin-top: -320px;
+  z-index: 3;
 }
 
 /* RESULT */
@@ -518,6 +527,7 @@ strong {
   place-items: center;
   transform: translateX(-50%) rotate(45deg);
   cursor: pointer;
+  z-index: 100;
 
   transition:
     transform 0.4s ease-in-out,
@@ -537,11 +547,44 @@ strong {
   font-size: 22px;
 }
 
+#bg-lottie {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+
+  width: 1800px;
+  height: 1800px;
+
+  transform: translate(-50%, -50%);
+
+  z-index: 3;
+  pointer-events: none;
+}
+
+#bg-lottie svg {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  min-height: 100%;
+
+  pointer-events: none;
+}
+
+#loading-lottie {
+  width: 700px;
+  height: 700px;
+  margin-bottom: -40px;
+}
+
+
 /* MOBILE */
 
 @media (max-width: 760px) {
   h1 {
-    font-size: clamp(52px, 20vw, 92px);
+    font-size: 92px;
   }
 
   .intro {
@@ -573,6 +616,7 @@ strong {
   .result-card {
     justify-self: center;
     width: min(48vw, 175px);
+    margin-top: 30px;
   }
 
   .result-text h2 {
@@ -587,23 +631,30 @@ strong {
     width: 76px;
     height: 76px;
   }
-}
 
-#bg-lottie {
-  position: fixed;
-  inset: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 3;
-  pointer-events: none;
-}
+  .screen {
+    min-height: 100dvh;
+    padding-top: 90px;
+    padding-bottom: 120px;
+  }
 
-#bg-lottie svg {
-  width: 100% !important;
-  height: 100% !important;
-}
+  .cards-choice {
+    flex-direction: column;
+    gap: 72px;
+  }
 
-#loading-lottie {
-  width: 700px;
-  height: 700px;
+  .choice-card {
+    width: min(64vw, 260px);
+    margin-top: 30px;
+  }
+
+  .choice-label {
+    bottom: -48px;
+    font-size: 26px;
+  }
+
+  .logo-mark {
+    top: 28px;
+    font-size: 64px;
+  }
 }

@@ -1,3 +1,4 @@
+/* Fonts */
 @font-face {
   font-family: "Bismarck";
   src: url("../fonts/Bismarck-nRoXR.ttf") format("truetype");
@@ -13,6 +14,7 @@
   src: url("../fonts/Helvetica Neue LT Std 73 Bold Extended.otf") format("opentype");
 }
 
+/* Root Variables */
 :root {
   --purple: #7a00ff;
   --pink: #ff00bf;
@@ -20,6 +22,7 @@
   --soft: #d9bbff;
 }
 
+/* Global */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -37,6 +40,7 @@ body {
   overflow-x: hidden;
 }
 
+/* General Screen Layout */
 .screen {
   position: relative;
   min-height: 100svh;
@@ -68,6 +72,7 @@ body {
   display: none;
 }
 
+/* Logo */
 .logo-mark {
   position: absolute;
 
@@ -94,6 +99,7 @@ body {
   color: var(--pink);
 }
 
+/* Home Screen */
 .home-content {
   position: relative;
   z-index: 2;
@@ -109,6 +115,7 @@ body {
   gap: clamp(24px, 3vw, 48px);
 }
 
+/*  Typography */
 h1 {
   font-family: "Bismarck", serif;
 
@@ -146,8 +153,7 @@ h1 {
   font-weight: normal;
 }
 
-/* HOME BUTTON */
-
+/* Start Rotting Button */
 .diamond-button {
   width: clamp(95px, 10vw, 138px);
   height: clamp(95px, 10vw, 138px);
@@ -187,8 +193,7 @@ h1 {
   line-height: 0.9;
 }
 
-/* CHOICE CARDS */
-
+/* Choice Cards */
 .cards-choice {
   position: relative;
   z-index: 2;
@@ -256,8 +261,7 @@ h1 {
   color: white;
 }
 
-/* WHITE DIAMOND */
-
+/* Random Card Button */
 .white-diamond {
   position: relative;
   z-index: 2;
@@ -299,8 +303,7 @@ h1 {
   line-height: 0.9;
 }
 
-/* SUITS */
-
+/* Suits Auswahl */
 .suit-menu {
   position: relative;
   z-index: 2;
@@ -349,101 +352,7 @@ h1 {
   transform: scale(1.08);
 }
 
-/* LOADING */
-
-.hourglass {
-  position: relative;
-
-  width: 120px;
-  height: 160px;
-}
-
-/* TOP */
-
-.hourglass::before {
-  content: "";
-
-  position: absolute;
-  top: 0;
-  left: 50%;
-
-  transform: translateX(-50%);
-
-  width: 0;
-  height: 0;
-
-  border-left: 60px solid transparent;
-  border-right: 60px solid transparent;
-  border-bottom: 80px solid white;
-}
-
-/* BOTTOM */
-
-.hourglass::after {
-  content: "";
-
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-
-  transform: translateX(-50%);
-
-  width: 0;
-  height: 0;
-
-  border-left: 60px solid transparent;
-  border-right: 60px solid transparent;
-  border-top: 80px solid white;
-}
-
-/* SAND */
-
-.sand {
-  position: absolute;
-
-  left: 50%;
-
-  transform: translateX(-50%);
-
-  width: 0;
-  height: 0;
-
-  border-left: 26px solid transparent;
-  border-right: 26px solid transparent;
-
-  animation: sandMove 1.6s infinite;
-}
-
-@keyframes sandMove {
-  0% {
-    top: 92px;
-
-    border-bottom: 42px solid #ff00bf;
-    border-top: 0 solid transparent;
-  }
-
-  49% {
-    top: 92px;
-
-    border-bottom: 42px solid #ff00bf;
-    border-top: 0 solid transparent;
-  }
-
-  50% {
-    top: 24px;
-
-    border-top: 42px solid #ff00bf;
-    border-bottom: 0 solid transparent;
-  }
-
-  100% {
-    top: 24px;
-
-    border-top: 42px solid #ff00bf;
-    border-bottom: 0 solid transparent;
-  }
-}
-
+/* Loading */
 .center-panel {
   position: relative;
   z-index: 2;
@@ -460,8 +369,7 @@ h1 {
   z-index: 3;
 }
 
-/* RESULT */
-
+/* Result*/
 .result-content {
   position: relative;
   z-index: 2;
@@ -512,8 +420,7 @@ strong {
   font-family: "Helvetica73", Helvetica, Arial, sans-serif;
 }
 
-/* REROT BUTTON */
-
+/* Rerot Button */
 .small-back {
   position: absolute;
   bottom: 70px;
@@ -547,6 +454,7 @@ strong {
   font-size: 22px;
 }
 
+/* Background Lottie Animation */
 #bg-lottie {
   position: fixed;
   top: 50%;
@@ -573,15 +481,14 @@ strong {
   pointer-events: none;
 }
 
+/* Loading Lottie Animation */
 #loading-lottie {
   width: 700px;
   height: 700px;
   margin-bottom: -40px;
 }
 
-
-/* MOBILE */
-
+/* Mobile Responsive */
 @media (max-width: 760px) {
   h1 {
     font-size: 92px;

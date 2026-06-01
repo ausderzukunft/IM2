@@ -120,7 +120,7 @@ h1 {
   font-family: "Bismarck", serif;
 
   font-size: clamp(100px, 20vw, 600px);
-  font-weight: normal;
+  font-weight: bold;
   font-synthesis: none;
 
   line-height: 0.8;
